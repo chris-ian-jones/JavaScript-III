@@ -18,14 +18,48 @@ function giveMotivation(motivationQuote) {
   }
   giveMotivation("You got this!");
 
-// Principle 2
-
+// Principle 2: Implicit Binding:
 // code example for Implicit Binding
 
-// Principle 3
+const myObj = {
+    inspirationQuote: "you can do it!",
+    inspirePerson: function(name) {
+      console.log(`Hey ${name}, ${this.inspirationQuote}`);
+      console.log(this);
+    }
+  };
+  myObj.inspirePerson('Chris');
 
+// Principle 3: New binding
 // code example for New Binding
 
-// Principle 4
+function HolidayGreeting(holiday) {
+    this.phrase = 'Happy ';
+    this.holiday = holiday;
+    this.greet = function() {
+      console.log(this.phrase + this.holiday);
+      console.log(this);
+    };
+  }
 
+  const christmas = new HolidayGreeting('Christmas');
+  const easter = new HolidayGreeting('Easter');
+
+  christmas.greet();
+  easter.greet();
+
+// Principle 4: Explicit binding
 // code example for Explicit Binding
+
+const about = {
+    first_name: 'Keano',
+    last_name: 'Reeves'
+    }
+  
+  const actingRoles = ['John Wick', 'Matrix', 'Speed'];
+  
+  function imdbIntro(movie1, movie2, movie3){
+    return `I'm ${this.first_name} ${this.last_name}, some movies you may have seen me in are ${movie1}, ${movie2}, and ${movie3}.`
+  }
+  
+  console.log(imdbIntro.call(about, ...actingRoles));
